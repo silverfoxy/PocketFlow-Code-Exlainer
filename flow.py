@@ -1,4 +1,5 @@
 from pocketflow import Flow
+
 # Import all node classes from nodes.py
 from nodes import (
     FetchRepo,
@@ -6,8 +7,9 @@ from nodes import (
     AnalyzeRelationships,
     OrderChapters,
     WriteChapters,
-    CombineTutorial
+    CombineTutorial,
 )
+
 
 def create_tutorial_flow():
     """Creates and returns the codebase tutorial generation flow."""
@@ -17,7 +19,7 @@ def create_tutorial_flow():
     identify_abstractions = IdentifyAbstractions(max_retries=3, wait=10)
     analyze_relationships = AnalyzeRelationships(max_retries=3, wait=10)
     order_chapters = OrderChapters(max_retries=3, wait=10)
-    write_chapters = WriteChapters(max_retries=3, wait=10) # This is a BatchNode
+    write_chapters = WriteChapters(max_retries=3, wait=10)  # This is a BatchNode
     combine_tutorial = CombineTutorial()
 
     # Connect nodes in sequence based on the design
@@ -31,3 +33,4 @@ def create_tutorial_flow():
     tutorial_flow = Flow(start=fetch_repo)
 
     return tutorial_flow
+
